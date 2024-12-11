@@ -3,30 +3,30 @@
   justify-content: center;
   align-items: center;
   height: inherit;
-  min-height: 100vh; /* Full height of the viewport */
+  min-height: 100vh;
   width: 100%;
   background-size: cover !important;
-  backdrop-filter: blur(5px); /* Applying blur effect to the background */
-  transition: background-image 0.5s ease-in-out; /* Smooth transition for background change */
-  position: relative; /* Ensure positioning context for pseudo-elements */
+  backdrop-filter: blur(5px);
+  transition: background-image 0.5s ease-in-out;
+  position: relative;
 }
 
-/* Optional: a fallback for browsers that do not support backdrop-filter */
+
 .base::before {
   content: '';
-  position: absolute; /* Ensure it's behind content */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: inherit; /* Inherit the background properties */
-  filter: blur(5px); /* Use a blur filter for fallback */
-  z-index: -1; /* Ensure it is behind other elements */
+  background: inherit;
+  filter: blur(5px);
+  z-index: -1;
 }
 
 .imgholder {
   width: 100%;
-  height: 340px; /* Changed to a more standard height */
+  height: 340px;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -102,7 +102,7 @@
 }
 
 .dot {
-  width: 224px; /* Adjusted size for better viewing */
+  width: 224px;
   height: 135px;
   border-radius: 8px;
   padding: 10px;
@@ -114,12 +114,12 @@
   border: 0.5px solid #00000080;
   background: #FFF2F266;
   margin: 10px;
-  transition: background 0.3s; /* Add hover transition effect */
+  transition: background 0.3s;
 }
 
 .dot:hover {
   cursor: pointer;
-  background: #FFF2F2; /* Lighten background on hover */
+  background: #FFF2F2;
 }
 
 .miniholder {
@@ -149,10 +149,10 @@
 }
 
 .active {
-  animation: all 0.5s forwards; /* Apply animation when active */
+  animation: all 0.5s forwards;
 }
 
-/* Keyframe animation for transition from grayscale to color */
+
 @keyframes colorful-animation {
   0% {
     filter: grayscale(100%);
@@ -162,36 +162,36 @@
   }
 }
 
-/* Add this for the dot elements */
+
 .dot {
-  display: inline-block; /* Allow for animation effects */
+  display: inline-block;
 }
 
 .dot.active {
-  animation: all 0.5s forwards; /* Apply animation when active */
+  animation: all 0.5s forwards;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .imgholder {
-    height: 250px; /* Adjust image height for smaller screens */
+    height: 250px;
   }
 
   .title {
-    font-size: 28px; /* Decrease title size */
+    font-size: 28px;
   }
 
   .description {
-    font-size: 16px; /* Decrease description size */
+    font-size: 16px;
   }
 
   .dot {
-    width: 100%; /* Full width for dots on smaller screens */
-    height: auto; /* Allow height to adjust automatically */
-    margin: 5px 0; /* Stack dots on small screens */
+    width: 100%;
+    height: auto;
+    margin: 5px 0;
   }
 
   .custom-dots {
-    flex-wrap: wrap; /* Allow dots to wrap in smaller screens */
+    flex-wrap: wrap;
   }
 }
