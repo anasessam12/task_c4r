@@ -5,6 +5,7 @@ import AOS from 'aos';
 import Aos from 'aos';
 import { CommonModule } from '@angular/common';
 import { SliderService } from '../../services/slider.service';
+import { catchError, Observable, of, tap } from 'rxjs';
 @Component({
   selector: 'app-slider',
   standalone: true,
@@ -94,16 +95,30 @@ export class SliderComponent implements OnInit {
   currentBackground: string = '';
   autoSlideInterval: any;
   sliderService = inject(SliderService)
+  sliderData$!: Observable<Slider[]>;
   ngOnInit(): void {
+    this.sliderData$ = this.sliderService.getSliderData().pipe(
+      tap(data => {
+          if (!data.length) {
+              console.error('No slides available from API');
+          }
+      }),
+      catchError(error => {
+          console.error('Error fetching slider data:', error);
+          return of(this.SliderData);
+      })
+  );
     this.updateBackground(this.currentSlideIndex); // Set initial background
     this.startAutoSlide(); // Start the auto slide
     AOS.init(); // Initialize animations
   }
+
+
   //Fake api
   getSliderData() {
     this.sliderService.getSliderData().subscribe({
       next:(data: Slider[]) =>{
-        this.SliderData = data; // Assign fetched data
+        this.sliderData$ = of(data);
         this.updateBackground(this.currentSlideIndex); // Initialize background
         this.startAutoSlide(); // Start auto slide after data is fetched
       },error:(err:any)=>{
